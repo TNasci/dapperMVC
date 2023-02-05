@@ -1,0 +1,56 @@
+﻿@model IEnumerable<dapperMVC.Models.Pessoas>
+
+@{
+    ViewData["Title"] = "Listagem de Pessoas";
+}
+
+<h4>Listagem de Pessoas</h4>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-success btn-sm">Nova pessoa</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id_pessoa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nome_pessoa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefone_pessoa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cpf_pessoa)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_pessoa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nome_pessoa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefone_pessoa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cpf_pessoa)
+            </td>
+            <td class="row">
+                    <a asp-asp-controller="Pessoa" asp-action="Edit" asp-route-id_pessoa="@item.id_pessoa" class=" col-3 btn btn-outline-info btn-sm">Editar</a> &emsp;
+                    <a asp-asp-controller="Pessoa" asp-action="Details" asp-route-id_pessoa="@item.id_pessoa" class=" col-3 btn btn-outline-info btn-sm">Detalhes</a> &emsp;
+                    <form asp-asp-controller="Pessoa" asp-action="Delete" asp-route-id_pessoa="@item.id_pessoa" onclick="confirm('Excluir @item.nome_pessoa ?')" class="col-3" >
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Deletar</button>
+                    </form>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
